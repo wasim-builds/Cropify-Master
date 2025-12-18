@@ -4,9 +4,9 @@
 <div class="pages-hero">
     <div class="container">
         <div class="pages-title">
-            <h1> </h1>
+            <h1>Query Details</h1>
             <div class="page-nav">
-                <p> </p>
+                <p><a href="{{ url_for('main.index') }}">Home</a> &nbsp; | &nbsp; <a href="{{ url_for('query.all_queries') }}">Queries</a> &nbsp; | &nbsp; <a href="#">Details</a></p>
             </div>
         </div>
     </div>  
@@ -21,13 +21,13 @@
                 
                 <div class="blog-content">
                     <figure class="blog-feature-img">
-                        <img src="images/common/blog-feature.jpg" alt="">
+                        <img src="/{{ query.img_url }}" alt="Query Image" style="width: 100%; max-height: 400px; object-fit: cover;">
                         <div class="blog-caption-box">
                             <div class="blog-caption-content">
                                 <h2>{{ query.text }}</h2>
                                 <div class="media"> 
                                     <div class="media-body"> 
-                                      <h5 class="mt-0">BY <span class="color-text"><a href="#">{{ user.name }}</a></span> &nbsp;|&nbsp; {{ query.time.strftime('%B %d, %Y') }}</h5> 
+                                      <h5 class="mt-0">BY <span class="color-text"><a href="#">{{ user.name }}</a></span> &nbsp;|&nbsp; {{ query.time.strftime('%B %d, %Y') }} &nbsp;|&nbsp; <span class="badge badge-success">{{ query.answers|length }} Answers</span></h5> 
                                     </div> 
                                   </div>
                             </div>
@@ -35,20 +35,30 @@
                     </figure>
                 </div>
 
-                <div class="blog-comments">
+                <div class="blog-comments mt-4">
+                    <h3 class="mb-4">Expert Answers ({{ query.answers|length }})</h3>
+
+                    {% if query.answers|length == 0 %}
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> No answers yet. Be the first to help!
+                        </div>
+                    {% endif %}
 
                     {% for ans in query.answers %}
-                        <div class="comment-box">
+                        <div class="comment-box" style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #EEC344;">
                             <div class="media">
-                                
+                                <div class="mr-3" style="width: 50px; height: 50px; background: #EEC344; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-user" style="color: white; font-size: 24px;"></i>
+                                </div>
                                 <div class="media-body">
-                                    <h5 class="mt-0">{{ ans.name }}</h5>
-                                    <p>
-                                        <strong>
-                                        {{ ans.time.strftime('%B %d, %Y %H:%M') }}
-                                        </strong>
+                                    <h5 class="mt-0">
+                                        {{ ans.name }} 
+                                        <span class="badge badge-warning ml-2">Expert</span>
+                                    </h5>
+                                    <p style="color: #666; font-size: 14px;">
+                                        <i class="far fa-clock"></i> {{ ans.time.strftime('%B %d, %Y at %H:%M') }}
                                     </p>
-                                    <p>{{ ans.text }}</p>
+                                    <p style="font-size: 16px; line-height: 1.6; margin-top: 15px;">{{ ans.text }}</p>
                                 </div>
                             </div>
                         </div>
@@ -56,13 +66,62 @@
 
                 </div>
 
-                {% if session['name'] %}
-                    <a href="/add-replay?qid={{ query.id }}" class="btn button">replay</a>
-                {% else %}
-                    <a href="/login">login</a> to give reply
-                {% endif %}
+                <div class="mt-4">
+                    {% if session['name'] %}
+                        <a href="/add-replay?qid={{ query.id }}" class="btn button"><i class="fas fa-reply"></i> Add Your Answer</a>
+                    {% else %}
+                        <div class="alert alert-warning">
+                            <i class="fas fa-sign-in-alt"></i> Please <a href="{{ url_for('auth.login') }}" class="alert-link">login</a> to provide an answer
+                        </div>
+                    {% endif %}
+                </div>
             </div>
-            <!-- BLOG CONTENT END --> 
+            <!-- BLOG CONTENT END -->
+            
+            <!-- SIDEBAR START -->
+            <div class="col-lg-3">
+                <div class="sidebar" style="position: sticky; top: 100px;">
+                    <div class="widget" style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <h4 style="margin-bottom: 15px; color: #333;">Query Info</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 10px 0; border-bottom: 1px solid #ddd;">
+                                <i class="fas fa-calendar-alt" style="color: #EEC344;"></i> 
+                                <strong>Posted:</strong> {{ query.time.strftime('%b %d, %Y') }}
+                            </li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #ddd;">
+                                <i class="fas fa-user" style="color: #EEC344;"></i> 
+                                <strong>By:</strong> {{ user.name }}
+                            </li>
+                            <li style="padding: 10px 0;">
+                                <i class="fas fa-comments" style="color: #EEC344;"></i> 
+                                <strong>Answers:</strong> {{ query.answers|length }}
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="widget" style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                        <h4 style="margin-bottom: 15px; color: #333;">Quick Links</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 10px;">
+                                <a href="{{ url_for('query.all_queries') }}" class="btn btn-sm btn-outline-primary btn-block">
+                                    <i class="fas fa-list"></i> All Queries
+                                </a>
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <a href="{{ url_for('crop.former_queries') }}" class="btn btn-sm btn-outline-success btn-block">
+                                    <i class="fas fa-plus"></i> Ask New Query
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('main.services') }}" class="btn btn-sm btn-outline-warning btn-block">
+                                    <i class="fas fa-home"></i> All Services
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- SIDEBAR END --> 
         </div>
     </div> 
 </section> 

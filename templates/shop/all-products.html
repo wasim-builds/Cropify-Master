@@ -4,47 +4,180 @@
     <div class="pages-hero">
         <div class="container">
             <div class="pages-title">
-                <h1>Products</h1>
+                <h1>Agri Marketplace</h1>
                 <div class="page-nav">
-                    <p><a href="{{ url_for('main.index') }}">Home</a> &nbsp; | &nbsp; <a href="#">Products</a></p>
+                    <p><a href="{{ url_for('main.index') }}">Home</a> &nbsp; | &nbsp; <a href="#">Marketplace</a></p>
                 </div>
             </div>
         </div>  
     </div>
 
     <div class="wrapper-form bg-light">
-        <div class="container-fluid px-5">
-            <div class="d-flex justify-content-between ">
-                <h3>All Products</h3>
+        <div class="container-fluid px-5 py-4">
+            <!-- HEADER SECTION -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3><i class="fas fa-store"></i> Agricultural Marketplace</h3>
+                    <p style="color: #666;">Buy and sell agricultural products</p>
+                </div>
                 {% if session['id'] %}
                     <div class="ms-auto">
-                        <a href="/orders" class="btn button">My Orders</a>
-                        <a href="{{ url_for('shop.add_product') }}" class="btn button">Add Product</a>
+                        <a href="/orders" class="btn btn-outline-primary"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                        <a href="{{ url_for('shop.add_product') }}" class="btn button"><i class="fas fa-plus"></i> Sell Product</a>
+                    </div>
+                {% else %}
+                    <div>
+                        <a href="{{ url_for('auth.login') }}" class="btn button"><i class="fas fa-sign-in-alt"></i> Login to Buy/Sell</a>
                     </div>
                 {% endif %}
             </div>
-        </div>
-        <div class="container-fluid">
 
-            <div class="d-flex flex-wrap justify-content-center ">
-
-                {% for product in products %}
-                    <div class="card m-3" style="width: 350px;">
-                        <img height="300px" src="{{ product.img_url }}" alt="">
-                        <div class="card-body">
-                            <h3 class="fs-3" style="font-weight: 900;" >{{ product.name }}</h3>
-                            <p>{{ product.description }}</p>
-                            <div class="d-flex justify-content-between ">
-                                <span class="fw-bold pt-2 " style="font-weight: 700;">Price: {{ product.price }} /-</span>
-                                {% if session['name'] %}
-                                    <a href="/buy-product?pid={{ product.id }}" class="btn button">Buy Now</a>
-                                
-                                {% endif %}
-                            </div>
-                        </div>
+            <!-- SEARCH AND FILTER SECTION -->
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input type="text" id="searchProduct" class="form-control" placeholder="Search products..." value="{{ request.args.get('search', '') }}">
+                        <button class="btn button" onclick="searchProducts()"><i class="fas fa-search"></i> Search</button>
                     </div>
-                {% endfor %}
+                </div>
+                <div class="col-md-4">
+                    <select class="form-control" id="categoryFilter" onchange="filterByCategory()">
+                        <option value="all" {% if selected_category == 'all' %}selected{% endif %}>All Categories</option>
+                        {% for cat in categories %}
+                            <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- CATEGORY CHIPS -->
+            <div class="mb-4">
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="?category=all" class="badge {% if selected_category == 'all' %}badge-warning{% else %}badge-secondary{% endif %}" 
+                       style="padding: 8px 15px; font-size: 14px; cursor: pointer;">
+                        All Products
+                    </a>
+                    {% for cat in categories %}
+                        <a href="?category={{ cat }}" class="badge {% if selected_category == cat %}badge-warning{% else %}badge-secondary{% endif %}" 
+                           style="padding: 8px 15px; font-size: 14px; cursor: pointer;">
+                            {{ cat }}
+                        </a>
+                    {% endfor %}
+                </div>
             </div>
         </div>
+
+        <div class="container-fluid px-5">
+            {% if products|length == 0 %}
+                <div class="alert alert-info text-center" style="margin: 50px 0;">
+                    <i class="fas fa-box-open" style="font-size: 48px; color: #EEC344;"></i>
+                    <h4 class="mt-3">No Products Found</h4>
+                    <p>Be the first to add products to the marketplace!</p>
+                    {% if session['id'] %}
+                        <a href="{{ url_for('shop.add_product') }}" class="btn button">Add Product</a>
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="d-flex flex-wrap justify-content-start">
+                    {% for product, seller in products %}
+                        <div class="card m-3 product-card" style="width: 350px; border: 2px solid #f0f0f0; border-radius: 15px; transition: all 0.3s;" data-aos="fade-up">
+                            <div style="position: relative;">
+                                <img height="300px" src="/{{ product.img_url }}" alt="{{ product.name }}" style="width: 100%; object-fit: cover; border-radius: 15px 15px 0 0;">
+                                
+                                <!-- Category Badge -->
+                                <span class="badge badge-warning" style="position: absolute; top: 10px; left: 10px; padding: 8px 12px; font-size: 12px;">
+                                    {{ product.category }}
+                                </span>
+                                
+                                <!-- Stock Badge -->
+                                {% if product.stock > 0 %}
+                                    <span class="badge badge-success" style="position: absolute; top: 10px; right: 10px; padding: 8px 12px; font-size: 12px;">
+                                        <i class="fas fa-box"></i> {{ product.stock }} in stock
+                                    </span>
+                                {% else %}
+                                    <span class="badge badge-danger" style="position: absolute; top: 10px; right: 10px; padding: 8px 12px; font-size: 12px;">
+                                        Out of Stock
+                                    </span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="card-body">
+                                <h4 class="fs-4" style="font-weight: 700; min-height: 60px;">{{ product.name }}</h4>
+                                <p style="color: #666; min-height: 50px;">{{ product.description[:80] }}{% if product.description|length > 80 %}...{% endif %}</p>
+                                
+                                <!-- Seller Info -->
+                                {% if seller %}
+                                    <div class="mb-2" style="font-size: 14px; color: #666;">
+                                        <i class="fas fa-user"></i> Sold by: <strong>{{ seller.name }}</strong>
+                                    </div>
+                                {% endif %}
+                                
+                                <!-- Rating -->
+                                <div class="mb-2">
+                                    {% for i in range(5) %}
+                                        {% if i < product.rating %}
+                                            <i class="fas fa-star" style="color: #EEC344;"></i>
+                                        {% else %}
+                                            <i class="far fa-star" style="color: #EEC344;"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <span style="color: #666; font-size: 14px;">({{ product.rating }})</span>
+                                </div>
+                                
+                                <hr>
+                                
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="fw-bold" style="font-size: 24px; color: #EEC344;">₹{{ product.price }}</span>
+                                        <span style="font-size: 14px; color: #666;">/unit</span>
+                                    </div>
+                                    <div>
+                                        <a href="/product-details?pid={{ product.id }}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye"></i> View
+                                        </a>
+                                        {% if session['name'] and product.stock > 0 %}
+                                            <a href="/buy-product?pid={{ product.id }}" class="btn btn-sm button">
+                                                <i class="fas fa-shopping-cart"></i> Buy
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
     </div>
+
+    <script>
+        function searchProducts() {
+            const search = document.getElementById('searchProduct').value;
+            const category = document.getElementById('categoryFilter').value;
+            window.location.href = `?category=${category}&search=${search}`;
+        }
+        
+        function filterByCategory() {
+            const category = document.getElementById('categoryFilter').value;
+            const search = document.getElementById('searchProduct').value;
+            window.location.href = `?category=${category}&search=${search}`;
+        }
+        
+        // Add hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 15px 30px rgba(0,0,0,0.2)';
+                    this.style.borderColor = '#EEC344';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                    this.style.borderColor = '#f0f0f0';
+                });
+            });
+        });
+    </script>
 {% endblock main %}

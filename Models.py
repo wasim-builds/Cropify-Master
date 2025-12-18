@@ -21,11 +21,16 @@ class ProductModel(db.Model):
     __tablename__ = "products"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(30))
-    description = db.Column(db.String(30))
+    name = db.Column(db.String(100))
+    description = db.Column(db.String(500))
     price = db.Column(db.Integer)
-    img_url = db.Column(db.String(30))
+    img_url = db.Column(db.String(200))
+    category = db.Column(db.String(50), default="General")
+    stock = db.Column(db.Integer, default=0)
+    rating = db.Column(db.Float, default=0.0)
+    external_link = db.Column(db.String(500), nullable=True)
     userId = db.Column(db.Integer, db.ForeignKey("users.id"))
+    time = db.Column(db.DateTime, default=datetime.now)
 
     def __repr__(self):
         return "<Product " + self.name + ">"
@@ -36,6 +41,11 @@ class OrderModel(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     productId=db.Column(db.Integer, db.ForeignKey('products.id'))
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
+    quantity = db.Column(db.Integer, default=1)
+    total_price = db.Column(db.Integer)
+    status = db.Column(db.String(20), default="Pending")
+    address = db.Column(db.String(200))
+    phone = db.Column(db.String(20))
     time = db.Column(db.DateTime, default=datetime.now)
 
 class QueryModel(db.Model):

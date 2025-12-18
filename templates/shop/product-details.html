@@ -1,0 +1,176 @@
+{% extends 'base/base-c.html' %}
+
+{% block main %}
+    <div class="pages-hero">
+        <div class="container">
+            <div class="pages-title">
+                <h1>Product Details</h1>
+                <div class="page-nav">
+                    <p><a href="{{ url_for('main.index') }}">Home</a> &nbsp; | &nbsp; <a href="{{ url_for('shop.all_products') }}">Marketplace</a> &nbsp; | &nbsp; <a href="#">Details</a></p>
+                </div>
+            </div>
+        </div>  
+    </div>
+
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <!-- PRODUCT IMAGE -->
+                <div class="col-lg-5">
+                    <div class="card border-0 shadow-sm" style="border-radius: 15px; overflow: hidden;">
+                        <img src="/{{ product.img_url }}" alt="{{ product.name }}" style="width: 100%; height: 500px; object-fit: cover;">
+                        
+                        <!-- Category Badge -->
+                        <div style="position: absolute; top: 20px; left: 20px;">
+                            <span class="badge badge-warning" style="padding: 10px 15px; font-size: 14px;">
+                                <i class="fas fa-tag"></i> {{ product.category }}
+                            </span>
+                        </div>
+                        
+                        <!-- Stock Badge -->
+                        <div style="position: absolute; top: 20px; right: 20px;">
+                            {% if product.stock > 0 %}
+                                <span class="badge badge-success" style="padding: 10px 15px; font-size: 14px;">
+                                    <i class="fas fa-box"></i> {{ product.stock }} Available
+                                </span>
+                            {% else %}
+                                <span class="badge badge-danger" style="padding: 10px 15px; font-size: 14px;">
+                                    Out of Stock
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT INFO -->
+                <div class="col-lg-7">
+                    <div class="ps-lg-4">
+                        <h2 class="mb-3" style="font-weight: 700; color: #333;">{{ product.name }}</h2>
+                        
+                        <!-- Rating -->
+                        <div class="mb-3">
+                            {% for i in range(5) %}
+                                {% if i < product.rating %}
+                                    <i class="fas fa-star" style="color: #EEC344; font-size: 20px;"></i>
+                                {% else %}
+                                    <i class="far fa-star" style="color: #EEC344; font-size: 20px;"></i>
+                                {% endif %}
+                            {% endfor %}
+                            <span class="ms-2" style="color: #666; font-size: 16px;">({{ product.rating }} rating)</span>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="mb-4">
+                            <h3 style="color: #EEC344; font-weight: 700; font-size: 36px;">₹{{ product.price }}</h3>
+                            <p style="color: #666;">Price per unit</p>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <h5 style="font-weight: 600; margin-bottom: 15px;">Description</h5>
+                            <p style="color: #666; font-size: 16px; line-height: 1.8;">{{ product.description }}</p>
+                        </div>
+
+                        <!-- Product Details -->
+                        <div class="mb-4">
+                            <h5 style="font-weight: 600; margin-bottom: 15px;">Product Details</h5>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td style="color: #666; width: 150px;"><i class="fas fa-tag"></i> Category:</td>
+                                    <td><strong>{{ product.category }}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #666;"><i class="fas fa-box"></i> Stock:</td>
+                                    <td><strong>{{ product.stock }} units</strong></td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #666;"><i class="far fa-calendar"></i> Listed:</td>
+                                    <td><strong>{{ product.time.strftime('%B %d, %Y') }}</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <!-- Seller Info -->
+                        {% if seller %}
+                            <div class="card mb-4" style="background: #f8f9fa; border: none; border-radius: 10px; padding: 20px;">
+                                <h5 style="font-weight: 600; margin-bottom: 15px;"><i class="fas fa-user-circle"></i> Seller Information</h5>
+                                <div class="d-flex align-items-center">
+                                    <div style="width: 60px; height: 60px; background: #EEC344; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                        <i class="fas fa-user" style="color: white; font-size: 28px;"></i>
+                                    </div>
+                                    <div>
+                                        <h6 style="margin: 0; font-weight: 600;">{{ seller.name }}</h6>
+                                        <p style="margin: 0; color: #666; font-size: 14px;">
+                                            <i class="fas fa-envelope"></i> {{ seller.email }}
+                                        </p>
+                                        <span class="badge badge-success mt-1">Verified Seller</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex gap-3 flex-column">
+                            <div class="d-flex gap-3">
+                                {% if session['name'] %}
+                                    {% if product.stock > 0 %}
+                                        <a href="/buy-product?pid={{ product.id }}" class="btn button btn-lg" style="flex: 1;">
+                                            <i class="fas fa-shopping-cart"></i> Buy from Seller
+                                        </a>
+                                    {% else %}
+                                        <button class="btn btn-secondary btn-lg" style="flex: 1;" disabled>
+                                            <i class="fas fa-times"></i> Out of Stock
+                                        </button>
+                                    {% endif %}
+                                    <a href="{{ url_for('shop.all_products') }}" class="btn btn-outline-primary btn-lg">
+                                        <i class="fas fa-arrow-left"></i> Back
+                                    </a>
+                                {% else %}
+                                    <a href="{{ url_for('auth.login') }}" class="btn button btn-lg" style="flex: 1;">
+                                        <i class="fas fa-sign-in-alt"></i> Login to Buy
+                                    </a>
+                                {% endif %}
+                            </div>
+                            
+                            <!-- External Purchase Link -->
+                            {% if product.external_link %}
+                                <div class="alert alert-info" style="margin-top: 15px; border-radius: 10px;">
+                                    <h6 style="margin-bottom: 10px;">
+                                        <i class="fas fa-external-link-alt"></i> Also Available Online
+                                    </h6>
+                                    <a href="{{ product.external_link }}" target="_blank" class="btn btn-success btn-lg btn-block" style="width: 100%;">
+                                        {% if 'amazon' in product.external_link.lower() %}
+                                            <i class="fab fa-amazon"></i> Buy on Amazon
+                                        {% elif 'flipkart' in product.external_link.lower() %}
+                                            <i class="fas fa-shopping-bag"></i> Buy on Flipkart
+                                        {% else %}
+                                            <i class="fas fa-shopping-cart"></i> Buy Online
+                                        {% endif %}
+                                        <i class="fas fa-arrow-right ms-2"></i>
+                                    </a>
+                                    <p class="mb-0 mt-2" style="font-size: 12px; color: #666;">
+                                        <i class="fas fa-info-circle"></i> You will be redirected to external website
+                                    </p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products Section (Optional) -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h4 class="mb-4" style="font-weight: 600;">
+                        <i class="fas fa-th-large"></i> More from {{ product.category }}
+                    </h4>
+                    <div class="text-center">
+                        <a href="{{ url_for('shop.all_products', category=product.category) }}" class="btn btn-outline-warning">
+                            View All {{ product.category }} Products <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock main %}
