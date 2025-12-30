@@ -4,6 +4,7 @@ from Models import QueryModel
 from extensions import db
 import requests
 from utils import *
+from Apps.icon_utils import get_icon_url
 from fpdf import FPDF # Import PDF library
 
 crop = Blueprint('crop', __name__)
@@ -117,6 +118,29 @@ def weather():
         return render_template('crop/weather.html', result = result)
     return render_template("crop/weather.html")
 
+@crop.route('/schemes')
+def schemes():
+    return render_template("crop/schemes.html")
+
+@crop.route('/market')
+def market():
+    import datetime
+    today = datetime.date.today().strftime("%d %B %Y")
+    
+    # Mock Data for Market Prices
+    market_data = [
+        {"crop": "Wheat", "variety": "Sharbati", "market": "Azadpur, Delhi", "price": "2,250", "change": "▲ +50", "icon": "https://img.icons8.com/color/48/wheat.png"},
+        {"crop": "Rice", "variety": "Basmati 1121", "market": "Karnal, Haryana", "price": "4,100", "change": "▼ -20", "icon": "https://img.icons8.com/color/48/rice-bowl.png"},
+        {"crop": "Maize", "variety": "Yellow Hybrid", "market": "Gulbarga, Karnataka", "price": "2,050", "change": "▲ +10", "icon": "https://img.icons8.com/color/48/corn.png"},
+        {"crop": "Cotton", "variety": "H-4", "market": "Rajkot, Gujarat", "price": "6,300", "change": "▼ -100", "icon": "https://img.icons8.com/color/48/cotton.png"},
+        {"crop": "Potato", "variety": "Jyoti", "market": "Agra, UP", "price": "850", "change": "▲ +30", "icon": "https://img.icons8.com/color/48/potato.png"},
+        {"crop": "Tomato", "variety": "Hybrid", "market": "Kolar, Karnataka", "price": "1,200", "change": "▼ -50", "icon": "https://img.icons8.com/color/48/tomato.png"},
+        {"crop": "Onion", "variety": "Red Nashik", "market": "Lasalgaon, Maharashtra", "price": "1,800", "change": "▲ +150", "icon": "https://img.icons8.com/color/48/onion.png"},
+        {"crop": "Soybean", "variety": "JS-335", "market": "Indore, MP", "price": "4,900", "change": "▲ +20", "icon": "https://img.icons8.com/color/48/soy.png"},
+    ]
+    
+    return render_template("crop/market.html", market_data=market_data, date=today)
+
 @crop.route('/former-queries', methods=['GET', 'POST'])
 def former_queries():
     if request.method == 'POST':
@@ -133,18 +157,18 @@ def former_queries():
 
 def get_weather(city):
     API_KEY = '3MUNGGH2VYWHHDXSBBDN24WHL'
-    url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{}/today?unitGroup=metric&include=days&key={}&contentType=json"
+    url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{}?unitGroup=metric&key={}&contentType=json"
     WEATHER_URL = url.format(city, API_KEY)
     response = requests.get(WEATHER_URL)
     if response.status_code == 200:
         result = response.json()
-        for res in result['days']:
-            if res['icon'] == 'clear-day': res['icon_url'] = 'https://www.visualcrossing.com/img/clear-day.c5680783.svg'
-            if res['icon'] == 'partly-cloudy-day': res['icon_url'] = 'https://www.visualcrossing.com/img/partly-cloudy-day.3f13edae.svg'
-            if res['icon'] == 'cloudy': res['icon_url'] = 'https://www.visualcrossing.com/img/cloudy.61f1f7c3.svg'
-            if res['icon'] == 'rain': res['icon_url'] = 'https://www.visualcrossing.com/img/rain.36d72e24.svg'
-            if res['icon'] == 'showers-day': res['icon_url'] = 'https://www.visualcrossing.com/img/showers-day.2f888a31.svg'
-            if res['icon'] == 'showers-night': res['icon_url'] = 'https://www.visualcrossing.com/img/showers-night.b7f6058d.svg'
-            if res['icon'] == 'thunder-showers-day': res['icon_url'] = 'https://www.visualcrossing.com/img/thunder-showers-day.90053223.svg'
-            if res['icon'] == 'thunder-rain': res['icon_url'] = 'https://www.visualcrossing.com/img/thunder-rain.c575e6f7.svg'
+        # Process icons for days
+        for day in result['days']:
+            day['icon_url'] = get_icon_url(day['icon'])
+        
+        # Process icons for hours (for the first day at least)
+        if 'hours' in result['days'][0]:
+            for hour in result['days'][0]['hours']:
+                hour['icon_url'] = get_icon_url(hour['icon'])
+                
         return result

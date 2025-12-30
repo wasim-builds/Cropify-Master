@@ -1,49 +1,203 @@
 {% extends 'base/base.html' %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css' ) }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form.css' ) }}">
+<style>
+    .input-group {
+        position: relative;
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding-right: 40px;
+        /* Space for mic icon */
+    }
+
+    .mic-icon {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+    }
+
+    .mic-icon:hover {
+        opacity: 1;
+    }
+
+    .mic-icon.listening {
+        filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+        /* Red color */
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: translateY(-50%) scale(1);
+        }
+
+        50% {
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        100% {
+            transform: translateY(-50%) scale(1);
+        }
+    }
+</style>
 {% endblock styles %}
 
 {% block main %}
-    <div class="pages-hero">
-        <div class="container">
-            <div class="pages-title">
-                <h1>Crop Recommendation</h1>
-                <div class="page-nav">
-                    <p><a href="{{ url_for('main.index') }}">Home</a> &nbsp; | &nbsp; <a href="{{ url_for('main.services') }}">Services</a> &nbsp; | &nbsp; <a href="#">Crop Recommendation</a></p>
-                </div>
+<div class="pages-hero">
+    <div class="container">
+        <div class="pages-title">
+            <h1>Crop Recommendation</h1>
+            <div class="page-nav">
+                <p><a href="{{ url_for('main.index') }}">Home</a> &nbsp; | &nbsp; <a
+                        href="{{ url_for('main.services') }}">Services</a> &nbsp; | &nbsp; <a href="#">Crop
+                        Recommendation</a></p>
             </div>
-        </div>  
-    </div>
-
-    <section>
-        <div class="wrapper-form">
-            <form method="post">
-                <h1>Enter details in all fields</h1>
-                <div id="output">
-                    {% if result %}
-                        <p>Best recommended crop is <b class="color-text">{{ result }}</b></p>
-                    {% endif %}
-                </div>
-                <div class="inputs">
-                    <input type="number" min="0" class="form-control" placeholder="Enter value of nitrogen" name="nitrogen">
-                    <input type="number" min="0" class="form-control" placeholder="Enter value of Moisture" name="Moisture">
-                    <input type="number" min="0" class="form-control" placeholder="Enter value of potassium" name="potassium">
-                    <input type="number" min="0" class="form-control" placeholder="Enter value of temp" name="temp">
-                    <input type="number" min="0" class="form-control" placeholder="Enter value of phosphorous" name="phosphorous">
-                    <input type="number" min="0" class="form-control" placeholder="Enter value of humidity" name="humidity">
-                    <input type="number" min="0" class="form-control" placeholder="Enter value of ph" name="ph">
-                    <select name="soil">
-                        <option selected disabled value="">Select soil type</option>
-    
-                        {% for i, soil in soils %}
-                            <option value="{{ i }}">{{ soil }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <input class="btn button btn-white" type="submit" value="Predict">
-            </form>
         </div>
-    </section>
+    </div>
+</div>
 
-{% endblock main %} 
+<section>
+    <div class="wrapper-form">
+        <form method="post">
+            <h1>Enter details to get AI prediction</h1>
+            <div id="output">
+                {% if result %}
+                <p>Best recommended crop is <b class="color-text">{{ result }}</b></p>
+                {% endif %}
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <input type="number" min="0" step="0.01" class="form-control" placeholder="Nitrogen (N)"
+                        name="nitrogen">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/microphone.png" class="mic-icon"
+                        onclick="startDictation(this)">
+                </div>
+
+                <div class="input-group">
+                    <input type="number" min="0" step="0.01" class="form-control" placeholder="Phosphorus (P)"
+                        name="phosphorous">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/microphone.png" class="mic-icon"
+                        onclick="startDictation(this)">
+                </div>
+
+                <div class="input-group">
+                    <input type="number" min="0" step="0.01" class="form-control" placeholder="Potassium (K)"
+                        name="potassium">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/microphone.png" class="mic-icon"
+                        onclick="startDictation(this)">
+                </div>
+
+                <div class="input-group">
+                    <input type="number" min="0" step="0.01" class="form-control" placeholder="Temperature (°C)"
+                        name="temp">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/microphone.png" class="mic-icon"
+                        onclick="startDictation(this)">
+                </div>
+
+                <div class="input-group">
+                    <input type="number" min="0" step="0.01" class="form-control" placeholder="Humidity (%)"
+                        name="humidity">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/microphone.png" class="mic-icon"
+                        onclick="startDictation(this)">
+                </div>
+
+                <div class="input-group">
+                    <input type="number" min="0" step="0.01" class="form-control" placeholder="pH Level" name="ph">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/microphone.png" class="mic-icon"
+                        onclick="startDictation(this)">
+                </div>
+
+                <div class="input-group">
+                    <input type="number" min="0" step="0.01" class="form-control" placeholder="Rainfall (mm)"
+                        name="Moisture">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/microphone.png" class="mic-icon"
+                        onclick="startDictation(this)">
+                </div>
+
+                <select name="soil" class="form-control" style="margin-bottom: 20px;">
+                    <option selected disabled value="">Select soil type</option>
+                    {% for i, soil in soils %}
+                    <option value="{{ i }}">{{ soil }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input class="btn button btn-white" type="submit" value="Predict">
+        </form>
+    </div>
+</section>
+
+<!-- Voice Input Script -->
+<script>
+    function startDictation(micIcon) {
+        if (window.hasOwnProperty('webkitSpeechRecognition')) {
+            var recognition = new webkitSpeechRecognition();
+
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = "en-US";
+
+            micIcon.classList.add('listening');
+
+            recognition.start();
+
+            recognition.onresult = function (e) {
+                var transcript = e.results[0][0].transcript;
+
+                // Simple logic to extract numbers from speech (e.g. "twenty five" -> 25)
+                // If the user says just a number, it works. If mixed text, we try to regex match digits.
+                // For words like "fifty", we rely on browser parsing often doing "50".
+                // If not, we might need a word-to-num library, but for now assuming browser handles common number speech well.
+
+                // Remove non-numeric chars except dot (for float)
+                var num = transcript.replace(/[^0-9.]/g, '');
+
+                // If empty (maybe user said "twenty"), try to parse with a basic map or just let user edit
+                // Ideally Google speech API returns "25" for "twenty five".
+
+                var inputField = micIcon.previousElementSibling;
+                if (num) {
+                    inputField.value = num;
+                } else {
+                    // Fallback: just put text, user can correct if it's "ten" instead of "10"
+                    // But input type="number" might block text.
+                    // Try to map common words if basic
+                    const wordMap = {
+                        'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,
+                        'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9, 'ten': 10
+                    };
+                    let lower = transcript.toLowerCase().trim();
+                    if (wordMap[lower] !== undefined) {
+                        inputField.value = wordMap[lower];
+                    }
+                }
+
+                recognition.stop();
+                micIcon.classList.remove('listening');
+            };
+
+            recognition.onerror = function (e) {
+                recognition.stop();
+                micIcon.classList.remove('listening');
+            }
+
+            recognition.onend = function () {
+                micIcon.classList.remove('listening');
+            }
+
+        } else {
+            alert("Voice input is not supported in this browser. Try Chrome.");
+        }
+    }
+</script>
+
+{% endblock main %}

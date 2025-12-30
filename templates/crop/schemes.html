@@ -1,0 +1,120 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Government Schemes{% endblock %}
+
+{% block styles %}
+<style>
+    .schemes-container {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+
+    .scheme-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 25px;
+        padding: 25px;
+        transition: transform 0.2s;
+        border-left: 5px solid #2ecc71;
+    }
+
+    .scheme-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .scheme-title {
+        color: #2c3e50;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .scheme-desc {
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .btn-apply {
+        display: inline-block;
+        background-color: #27ae60;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .btn-apply:hover {
+        background-color: #219150;
+        color: white;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .page-header h1 {
+        color: #27ae60;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+<div class="pages-hero">
+    <div class="container">
+        <div class="pages-title">
+            <h1>Government Schemes</h1>
+            <div class="page-nav">
+                <p><a href="{{ url_for('main.index') }}">Home</a> &nbsp; | &nbsp; <a href="#">Schemes</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="schemes-container">
+
+    <div class="scheme-card">
+        <div class="scheme-title">Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)</div>
+        <div class="scheme-desc">
+            An initiative by the government of India in which all farmers will get up to ₹6,000 per year as minimum
+            income support. The initiative was announced during the 2019 Interim Union Budget of India.
+        </div>
+        <a href="https://pmkisan.gov.in/" target="_blank" class="btn-apply">Visit Official Website</a>
+    </div>
+
+    <div class="scheme-card">
+        <div class="scheme-title">Pradhan Mantri Fasal Bima Yojana (PMFBY)</div>
+        <div class="scheme-desc">
+            A government sponsored crop insurance scheme that integrates multiple stakeholders on a single platform. It
+            provides insurance coverage and financial support to the farmers in the event of failure of any of the
+            notified crop as a result of natural calamities, pests & diseases.
+        </div>
+        <a href="https://pmfby.gov.in/" target="_blank" class="btn-apply">Check Insurance Details</a>
+    </div>
+
+    <div class="scheme-card">
+        <div class="scheme-title">Kisan Credit Card (KCC)</div>
+        <div class="scheme-desc">
+            The Kisan Credit Card scheme is a Government of India scheme which provides farmers with timely access to
+            credit. The scheme was introduced in 1998 to provide short-term formal credit to farmers.
+        </div>
+        <a href="https://pib.gov.in/PressReleaseIframePage.aspx?PRID=1943856" target="_blank" class="btn-apply">Learn
+            More</a>
+    </div>
+
+    <div class="scheme-card">
+        <div class="scheme-title">Soil Health Card Scheme</div>
+        <div class="scheme-desc">
+            A scheme to issue soil health cards to farmers which will carry crop-wise recommendations of nutrients and
+            fertilizers required for the individual farms to help farmers to improve productivity through judicious use
+            of inputs.
+        </div>
+        <a href="https://www.soilhealth.dac.gov.in/" target="_blank" class="btn-apply">View Soil Health</a>
+    </div>
+
+</div>
+{% endblock %}

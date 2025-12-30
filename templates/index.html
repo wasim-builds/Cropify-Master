@@ -1,1 +1,57 @@
 {% extends 'base/base-home.html' %}
+
+{% block main %}
+<section class="section-padding">
+    <div class="container">
+        <div class="section-title text-center mb-5">
+            <h2 class="title">Quick <span class="color-text">Access</span></h2>
+            <p class="subtitle">Essential tools for modern farming</p>
+        </div>
+
+        <div class="row">
+            <!-- Weather Card -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="service-box text-center p-4 shadow-sm rounded bg-white h-100">
+                    <img src="https://img.icons8.com/color/96/partly-cloudy-day--v1.png" alt="Weather" class="mb-3"
+                        style="width: 64px;">
+                    <h4>Weather</h4>
+                    <p class="text-muted small">Check real-time weather forecasts.</p>
+                    <a href="{{ url_for('crop.weather') }}" class="btn btn-sm btn-outline-success mt-2">View Weather</a>
+                </div>
+            </div>
+
+            <!-- Market Prices Card -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="service-box text-center p-4 shadow-sm rounded bg-white h-100">
+                    <img src="https://img.icons8.com/color/96/rupee.png" alt="Market" class="mb-3" style="width: 64px;">
+                    <h4>Market Prices</h4>
+                    <p class="text-muted small">Daily mandi rates for your crops.</p>
+                    <a href="{{ url_for('crop.market') }}" class="btn btn-sm btn-outline-success mt-2">Check Prices</a>
+                </div>
+            </div>
+
+            <!-- Govt Schemes Card -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="service-box text-center p-4 shadow-sm rounded bg-white h-100">
+                    <img src="https://img.icons8.com/color/96/museum.png" alt="Schemes" class="mb-3"
+                        style="width: 64px;">
+                    <h4>Govt Schemes</h4>
+                    <p class="text-muted small">Beneficial schemes for farmers.</p>
+                    <a href="{{ url_for('crop.schemes') }}" class="btn btn-sm btn-outline-success mt-2">View Schemes</a>
+                </div>
+            </div>
+
+            <!-- Crop Recommendation Card -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="service-box text-center p-4 shadow-sm rounded bg-white h-100">
+                    <img src="https://img.icons8.com/color/96/sprout.png" alt="Crop" class="mb-3" style="width: 64px;">
+                    <h4>Recommendation</h4>
+                    <p class="text-muted small">AI-based crop suggestions.</p>
+                    <a href="{{ url_for('crop.crop_recommendation') }}"
+                        class="btn btn-sm btn-outline-success mt-2">Predict Crop</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main %}

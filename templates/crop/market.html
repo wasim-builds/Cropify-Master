@@ -1,0 +1,120 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Daily Market Prices{% endblock %}
+
+{% block styles %}
+<style>
+    .market-container {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+
+    .price-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .market-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .market-table th,
+    .market-table td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .market-table th {
+        background-color: #2ecc71;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .market-table tr:hover {
+        background-color: #f9f9f9;
+        transition: 0.3s;
+    }
+
+    .change-up {
+        color: #27ae60;
+        font-weight: bold;
+    }
+
+    .change-down {
+        color: #c0392b;
+        font-weight: bold;
+    }
+
+    .last-updated {
+        text-align: right;
+        color: #7f8c8d;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+<div class="pages-hero">
+    <div class="container">
+        <div class="pages-title">
+            <h1>Daily Market Prices (Mandi Rates)</h1>
+            <div class="page-nav">
+                <p><a href="{{ url_for('main.index') }}">Home</a> &nbsp; | &nbsp; <a href="#">Market Prices</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="market-container">
+    <div class="last-updated">
+        Last Updated: {{ date }}
+    </div>
+
+    <div class="price-card">
+        <div class="table-responsive">
+            <table class="market-table">
+                <thead>
+                    <tr>
+                        <th>Crop</th>
+                        <th>Variety</th>
+                        <th>Market/Mandi</th>
+                        <th>Price (₹/Quintal)</th>
+                        <th>Change</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in market_data %}
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img src="{{ item.icon }}" alt="{{ item.crop }}"
+                                    style="width: 30px; height: 30px; object-fit: contain;">
+                                {{ item.crop }}
+                            </div>
+                        </td>
+                        <td>{{ item.variety }}</td>
+                        <td>{{ item.market }}</td>
+                        <td>₹{{ item.price }}</td>
+                        <td class="{{ 'change-up' if '▲' in item.change else 'change-down' }}">
+                            {{ item.change }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
