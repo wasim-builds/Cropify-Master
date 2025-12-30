@@ -35,7 +35,4 @@ tzdata
 urllib3
 Werkzeug<3.0.0
 WTForms
-tensorflow
-keras
 Pillow
-Flask-Babel

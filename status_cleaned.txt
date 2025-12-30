@@ -1,0 +1,27 @@
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .gitignore
+	modified:   Api/predict.py
+	modified:   App.py
+	modified:   extensions.py
+	modified:   requirements.txt
+	modified:   templates/about.html
+	modified:   templates/auth/login.html
+	modified:   templates/contact.html
+	modified:   templates/includes/footer.html
+	modified:   templates/includes/header.html
+	modified:   templates/services.html
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	babel.cfg
+	messages.pot
+	requirements_safe.txt
+	status_cleaned.txt
+	translations/
+
+no changes added to commit (use "git add" and/or "git commit -a")

@@ -1,8 +1,14 @@
-from keras.models import load_model
+try:
+    from keras.models import load_model
+    import tensorflow as tf
+except ImportError:
+    load_model = None
+    tf = None
+    print("WARNING: TensorFlow/Keras not available. AI features will count as disabled.")
+
 import numpy as np
 from PIL import Image, ImageOps
 import requests
-import tensorflow as tf
 
 with open('Api/models/labels.txt', 'r') as file:
     class_labels = [line.strip() for line in file.readlines()]
@@ -18,6 +24,8 @@ def load_and_prep_image(filepath, image_size):
     return img
 
 def classify_image(filepath, model_path, image_size=229, class_labels=class_labels):
+    if load_model is None or tf is None:
+        return {"error": "AI model not available"}
     # loading trained model
     trained_model=load_model(model_path, compile=False)
     trained_model.compile(
@@ -43,6 +51,8 @@ def classify_image(filepath, model_path, image_size=229, class_labels=class_labe
 
 #google teachable machine
 def predict_class(filepath, model_path, image_size = 299):
+    if load_model is None:
+        return {"error": "AI model not available"}
     np.set_printoptions(suppress=True)
 
     model = load_model(model_path ,compile=False)
@@ -90,6 +100,8 @@ def predict_class(filepath, model_path, image_size = 299):
 
 # using bytes
 def prepare_image(image, image_size):
+    if tf is None:
+        raise ImportError("TensorFlow not available")
     image = tf.image.decode_jpeg(image, channels=3)
 
     image = tf.cast(image, tf.float32)
@@ -101,6 +113,8 @@ def prepare_image(image, image_size):
     return image
 
 def classify_using_bytes(image_bytes, model_path, image_size):
+    if load_model is None:
+        return {"idx": -1, "class": "Error: AI not available", "score": "0.00%"}
     model = load_model(model_path, compile=False)
     model.compile(
             loss='categorical_crossentropy',

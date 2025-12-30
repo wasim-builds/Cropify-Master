@@ -1,0 +1,513 @@
+# Hindi translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-12-30 13:13+0530\n"
+"PO-Revision-Date: 2025-12-30 12:23+0530\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: hi\n"
+"Language-Team: hi <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: templates/about.html:7 templates/includes/footer.html:62
+#, fuzzy
+msgid "About Us"
+msgstr "हमारे बारे में"
+
+#: templates/about.html:9 templates/auth/login.html:10 templates/contact.html:9
+#: templates/includes/footer.html:40 templates/services.html:9
+#, fuzzy
+msgid "Home"
+msgstr "होम"
+
+#: templates/about.html:9
+#, fuzzy
+msgid ""
+"About\n"
+"                        Us"
+msgstr "हमारे बारे में"
+
+#: templates/about.html:27
+msgid "About Cropify"
+msgstr "Cropify के बारे में"
+
+#: templates/about.html:28
+msgid "Abstract"
+msgstr "सार"
+
+#: templates/about.html:29
+msgid ""
+"In an era where sustainable agriculture is paramount, our Cropify project"
+" stands at the\n"
+"                        forefront of innovation, offering farmers a "
+"comprehensive and user-friendly solution for\n"
+"                        efficient crop management. Leveraging cutting-"
+"edge technology and data-driven insights, our\n"
+"                        project encompasses three core functionalities to"
+" maximize agricultural productivity while\n"
+"                        minimizing environmental impact."
+msgstr ""
+"ऐसे युग में जहाँ टिकाऊ कृषि सर्वोपरि है, हमारा क्रोपिफाई प्रोजेक्ट नवाचार"
+" में सबसे आगे है, जो किसानों को कुशल फसल प्रबंधन के लिए एक व्यापक और "
+"उपयोगकर्ता के अनुकूल समाधान प्रदान करता है। अत्याधुनिक तकनीक और "
+"डेटा-संचालित अंतर्दृष्टि का लाभ उठाते हुए, हमारे प्रोजेक्ट में पर्यावरणीय"
+" प्रभाव को कम करते हुए कृषि उत्पादकता को अधिकतम करने के लिए तीन मुख्य "
+"कार्यक्षमताएँ शामिल हैं।"
+
+#: templates/about.html:56
+msgid "Industry Oriented"
+msgstr "उद्योग उन्मुख"
+
+#: templates/about.html:57
+msgid ""
+"Enabling Ecosystem for Food and Agriculture through Digital Innovation at"
+" the\n"
+"                                    World Summit."
+msgstr ""
+"विश्व शिखर सम्मेलन में डिजिटल नवाचार के माध्यम से खाद्य और कृषि के लिए "
+"पारिस्थितिकी तंत्र को सक्षम करना।"
+
+#: templates/about.html:66
+msgid "Fresh Vegetables"
+msgstr "ताज़ी सब्जियाँ"
+
+#: templates/about.html:67
+msgid ""
+"The mission of Cropify is to facilitate the discussion on the adoption "
+"and use\n"
+"                                    digital innovations.."
+msgstr ""
+"क्रोपिफाई का मिशन डिजिटल नवाचारों को अपनाने और उपयोग करने पर चर्चा को "
+"सुविधाजनक बनाना है।"
+
+#: templates/about.html:76
+msgid "We are Passionate"
+msgstr "हम भावुक हैं"
+
+#: templates/about.html:77
+msgid ""
+"Latest analysis by the Cadre Harmonisé indicates an increase in acute "
+"food\n"
+"                                    insecurity of more than percent.."
+msgstr ""
+"कैडर हारमोनीज़ के नवीनतम विश्लेषण से पता चलता है कि तीव्र खाद्य असुरक्षा "
+"में प्रतिशत से अधिक की वृद्धि हुई है।"
+
+#: templates/about.html:86
+#, fuzzy
+msgid "Natural Products"
+msgstr "प्राकृतिक उत्पाद"
+
+#: templates/about.html:87
+msgid ""
+"The Food and Agriculture Organization’s Food Price Index averaged 94.2 "
+"points\n"
+"                                    in July, a 1.2 percent increase.."
+msgstr ""
+"जुलाई में खाद्य और कृषि संगठन का खाद्य मूल्य सूचकांक औसतन 94.2 अंक रहा, "
+"जो 1.2 प्रतिशत की वृद्धि थी।"
+
+#: templates/about.html:102
+msgid "Meet"
+msgstr "मिलिए"
+
+#: templates/about.html:102 templates/includes/footer.html:63
+msgid "Our Team"
+msgstr "हमारी टीम"
+
+#: templates/about.html:107
+msgid ""
+"We specialise in intelligent & effective Search and believes in the power"
+" of\n"
+"                            partnerships to grow business. We use "
+"agronomic machine learning, remote sensing."
+msgstr ""
+"हम बुद्धिमान और प्रभावी खोज में विशेषज्ञ हैं और व्यापार बढ़ाने के लिए "
+"साझेदारी की शक्ति में विश्वास करते हैं। हम एग्रोनॉमिक मशीन लर्निंग, रिमोट"
+" सेंसिंग का उपयोग करते हैं।"
+
+#: templates/about.html:121
+#, fuzzy
+msgid "The Precision"
+msgstr "सटीकता"
+
+#: templates/about.html:121
+#, fuzzy
+msgid "agriculture"
+msgstr "कृषि"
+
+#: templates/about.html:126 templates/includes/footer.html:11
+#, fuzzy
+msgid "Contact Us"
+msgstr "संपर्क करें"
+
+#: templates/about.html:137
+msgid "The Spirit"
+msgstr "आत्मा"
+
+#: templates/about.html:137
+msgid "of Innovation"
+msgstr "नवाचार की"
+
+#: templates/about.html:138
+msgid ""
+"If you are looking for a fun, challenging, fast-paced work environment "
+"with growth\n"
+"                        opportunities, come join our incredible."
+msgstr ""
+"यदि आप विकास के अवसरों के साथ एक मजेदार, चुनौतीपूर्ण, तेज गति वाले काम के"
+" माहौल की तलाश कर रहे हैं, तो हमारे अविश्वसनीय में शामिल हों।"
+
+#: templates/contact.html:7 templates/contact.html:9
+#: templates/includes/footer.html:52 templates/includes/header.html:18
+msgid "Contact"
+msgstr "संपर्क करें"
+
+#: templates/contact.html:23
+msgid "Our Office"
+msgstr "हमारा कार्यालय"
+
+#: templates/contact.html:24
+msgid "Owner"
+msgstr "मालिक"
+
+#: templates/contact.html:32
+msgid "Call Us"
+msgstr "हमें कॉल करें"
+
+#: templates/contact.html:41
+msgid "Email Address"
+msgstr "ईमेल पता"
+
+#: templates/contact.html:52
+msgid "Get"
+msgstr "प्राप्त करें"
+
+#: templates/contact.html:52
+msgid "In Touch"
+msgstr "संपर्क में"
+
+#: templates/contact.html:53
+#, fuzzy
+msgid ""
+"We specialise in intelligent & effective Search and believes in the power"
+" of partnerships to\n"
+"                    grow business. We use agronomic machine learning, "
+"remote sensing,"
+msgstr ""
+"हम बुद्धिमान और प्रभावी खोज में विशेषज्ञ हैं और व्यापार बढ़ाने के लिए "
+"साझेदारी की शक्ति में विश्वास करते हैं। हम एग्रोनॉमिक मशीन लर्निंग, रिमोट"
+" सेंसिंग का उपयोग करते हैं,"
+
+#: templates/contact.html:65
+msgid "Name"
+msgstr "नाम"
+
+#: templates/contact.html:73
+msgid "Email address"
+msgstr "ईमेल पता"
+
+#: templates/contact.html:81
+msgid "Please enter your phone"
+msgstr "कृपया अपना फोन दर्ज करें"
+
+#: templates/contact.html:88
+#, fuzzy
+msgid "Your message"
+msgstr "आपका संदेश"
+
+#: templates/contact.html:97
+msgid "Send message"
+msgstr "संदेश भेजें"
+
+#: templates/includes/footer.html:51 templates/includes/header.html:17
+#: templates/services.html:7 templates/services.html:10
+#: templates/services.html:19
+msgid "Services"
+msgstr "सेवाएं"
+
+#: templates/services.html:19
+msgid "Cropify"
+msgstr "क्रोपिफाई"
+
+#: templates/services.html:20
+msgid ""
+"We specialise in intelligent & effective Search and believes in the power"
+" of partnerships to grow\n"
+"                business. We use agronomic machine learning, remote "
+"sensing,"
+msgstr ""
+"हम बुद्धिमान और प्रभावी खोज में विशेषज्ञ हैं और व्यापार बढ़ाने के लिए "
+"साझेदारी की शक्ति में विश्वास करते हैं। हम एग्रोनॉमिक मशीन लर्निंग, रिमोट"
+" सेंसिंग का उपयोग करते हैं,"
+
+#: templates/services.html:30 templates/services.html:34
+msgid "Fertilizer"
+msgstr "उर्वरक"
+
+#: templates/services.html:31
+msgid ""
+"This service will recommend you the best fertilizer that we have to use. "
+"You need give\n"
+"                            values of N, P, K, soil type, crop type, soil"
+" mostiure, temparture and humidity"
+msgstr ""
+"यह सेवा आपको उस सर्वोत्तम उर्वरक की सिफारिश करेगी जिसका हमें उपयोग करना "
+"है। आपको N, P, K, मिट्टी के प्रकार, फसल के प्रकार, मिट्टी की नमी, तापमान "
+"और आर्द्रता के मान देने होंगे"
+
+#: templates/services.html:44
+msgid "Crops"
+msgstr "फसलें"
+
+#: templates/services.html:45
+msgid ""
+"This service will recommend the best crop to grow, based on your soil and"
+" weather\n"
+"                            conditions. which help farmers to make "
+"correct dessions"
+msgstr ""
+"यह सेवा आपकी मिट्टी और मौसम की स्थिति के आधार पर उगाने के लिए सबसे अच्छी "
+"फसल की सिफारिश करेगी। जो किसानों को सही निर्णय लेने में मदद करती है"
+
+#: templates/services.html:47
+msgid "Crop"
+msgstr "फसल"
+
+#: templates/services.html:57 templates/services.html:60
+msgid "Crop Disease"
+msgstr "फसल रोग"
+
+#: templates/services.html:58
+msgid ""
+"This service will predict the disease of palnt/crop and suggests the "
+"solution to cure\n"
+"                            the disease. it also includes the solution "
+"from expects."
+msgstr ""
+"यह सेवा पौधे/फसल के रोग की भविष्यवाणी करेगी और रोग को ठीक करने के लिए "
+"समाधान सुझाएगी। इसमें विशेषज्ञों के समाधान भी शामिल हैं।"
+
+#: templates/services.html:70 templates/services.html:74
+msgid "Weather"
+msgstr "मौसम"
+
+#: templates/services.html:71
+msgid ""
+"This services will provide the weather forccast for any place in the for "
+"15 day. it use\n"
+"                            VisualCrossing api to fetch the information."
+msgstr ""
+"यह सेवा किसी भी स्थान के लिए 15 दिनों का मौसम पूर्वानुमान प्रदान करेगी। "
+"यह जानकारी लाने के लिए VisualCrossing api का उपयोग करता है।"
+
+#: templates/services.html:84
+#, fuzzy
+msgid "Queries"
+msgstr "प्रश्न"
+
+#: templates/services.html:85
+msgid ""
+"If farmer needs any help from experts, then they can use this services to"
+" raise the\n"
+"                            Queries and get answers"
+msgstr ""
+"यदि किसान को विशेषज्ञों से कोई मदद चाहिए, तो वे प्रश्न उठाने और उत्तर "
+"पाने के लिए इस सेवा का उपयोग कर सकते हैं"
+
+#: templates/services.html:87
+msgid "Query"
+msgstr "प्रश्न"
+
+#: templates/services.html:97 templates/services.html:101
+msgid "Market"
+msgstr "बाज़ार"
+
+#: templates/services.html:98
+msgid ""
+"The former can provide his/her valuable feed back or reach us using this "
+"service. which\n"
+"                            help us to impove our productivity."
+msgstr ""
+"किसान अपनी बहुमूल्य प्रतिक्रिया दे सकता है या इस सेवा का उपयोग करके हम तक"
+" पहुँच सकता है। जो हमारी उत्पादकता को सुधारने में हमारी मदद करता है।"
+
+#: templates/services.html:117
+#, fuzzy
+msgid "PRECISION"
+msgstr "सटीक"
+
+#: templates/services.html:117
+#, fuzzy
+msgid "AGRICULTURE"
+msgstr "कृषि"
+
+#: templates/services.html:118
+msgid ""
+"Our farm loan products allowing you even further control of your "
+"financial success. Our\n"
+"                            Business Bureau rating is a testament to how "
+"dedicated we are to our customers."
+msgstr ""
+"हमारे कृषि ऋण उत्पाद आपको अपनी वित्तीय सफलता पर और भी अधिक नियंत्रण "
+"प्रदान करते हैं। हमारी बिजनेस ब्यूरो रेटिंग इस बात का प्रमाण है कि हम "
+"अपने ग्राहकों के प्रति कितने समर्पित हैं।"
+
+#: templates/services.html:120
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable\n"
+"                            content."
+msgstr ""
+"यह एक लंबे समय से स्थापित तथ्य है कि एक पाठक पठनीय सामग्री से विचलित हो "
+"जाएगा।"
+
+#: templates/services.html:123
+msgid "Learn More"
+msgstr "और अधिक जानें"
+
+#: templates/auth/login.html:8 templates/auth/login.html:10
+#: templates/includes/header.html:55
+msgid "Login"
+msgstr "लॉग इन करें"
+
+#: templates/auth/login.html:19
+msgid "Welcome Back"
+msgstr "वापसी पर स्वागत है"
+
+#: templates/auth/login.html:34
+msgid "Forgot Password?"
+msgstr "पासवर्ड भूल गए?"
+
+#: templates/auth/login.html:38
+msgid "Don't have an account."
+msgstr "क्या आपके पास खाता नहीं है?"
+
+#: templates/auth/login.html:39
+msgid "register"
+msgstr "रजिस्टर करें"
+
+#: templates/includes/footer.html:6
+msgid "bright nature"
+msgstr "उज्ज्वल प्रकृति"
+
+#: templates/includes/footer.html:6
+msgid "of decision"
+msgstr "निर्णय का"
+
+#: templates/includes/footer.html:7
+msgid "Bringing growth, ingenuity, and experience to market."
+msgstr "विकास, सरलता और अनुभव को बाज़ार में लाना।"
+
+#: templates/includes/footer.html:12
+#, fuzzy
+msgid "About US"
+msgstr "हमारे बारे में"
+
+#: templates/includes/footer.html:24
+msgid ""
+"Helping farmers to emerging markets maximize their profits. We use\n"
+"                        agronomic machine learning, remote sensing, and "
+"mobile phones to deliver financing, farm\n"
+"                        products, and customized advice to smallholder."
+msgstr ""
+"किसानों को उभरते बाजारों में उनके मुनाफे को अधिकतम करने में मदद करना। हम "
+"छोटे किसानों को वित्तपोषण, कृषि उत्पाद और अनुकूलित सलाह देने के लिए कृषि "
+"मशीन लर्निंग, रिमोट सेंसिंग और मोबाइल फोन का उपयोग करते हैं।"
+
+#: templates/includes/footer.html:38
+msgid "Quick Links"
+msgstr "त्वरित कड़ियाँ"
+
+#: templates/includes/footer.html:41
+msgid "Products"
+msgstr "उत्पाद"
+
+#: templates/includes/footer.html:42
+#, fuzzy
+msgid "Blogs"
+msgstr "ब्लॉग"
+
+#: templates/includes/footer.html:43
+msgid "Gallery"
+msgstr "गैलरी"
+
+#: templates/includes/footer.html:49 templates/includes/header.html:16
+msgid "About"
+msgstr "बारे में"
+
+#: templates/includes/footer.html:53
+msgid "Careers"
+msgstr "करियर"
+
+#: templates/includes/footer.html:54
+msgid "FAQ"
+msgstr "सामान्य प्रश्न"
+
+#: templates/includes/footer.html:60
+msgid "Company"
+msgstr "कंपनी"
+
+#: templates/includes/footer.html:64
+msgid "Testimonials"
+msgstr "प्रशंसापत्र"
+
+#: templates/includes/footer.html:65
+msgid "Pricing"
+msgstr "मूल्य निर्धारण"
+
+#: templates/includes/footer.html:75
+msgid "all rights reserved"
+msgstr "सर्वाधिकार सुरक्षित"
+
+#: templates/includes/footer.html:80
+msgid "Terms"
+msgstr "शर्तें"
+
+#: templates/includes/footer.html:81
+msgid "Privacy"
+msgstr "गोपनीयता"
+
+#: templates/includes/footer.html:82
+msgid "Support"
+msgstr "समर्थन"
+
+#: templates/includes/header.html:15
+msgid "HOME"
+msgstr "होम"
+
+#: templates/includes/header.html:22
+msgid "Language"
+msgstr "भाषा"
+
+#: templates/includes/header.html:69
+msgid "Grown by nature"
+msgstr "प्रकृति द्वारा उगाया गया"
+
+#: templates/includes/header.html:70
+msgid "Connecting"
+msgstr "जोड़ना"
+
+#: templates/includes/header.html:70
+msgid ""
+"energy\n"
+"                                    markets"
+msgstr "ऊर्जा बाज़ार"
+
+#: templates/includes/header.html:78
+msgid "We know agriculture"
+msgstr "हम कृषि जानते हैं"
+
+#: templates/includes/header.html:87
+msgid "Farming Machines"
+msgstr "खेती की मशीनें"
+

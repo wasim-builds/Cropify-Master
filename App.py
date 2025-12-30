@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from extensions import db, mail, bcrypt
+from extensions import db, mail, bcrypt, babel
 from dotenv import load_dotenv
 
 # Load .env file
@@ -23,6 +23,16 @@ else:
 db.init_app(app)
 mail.init_app(app)
 bcrypt.init_app(app)
+
+app.config['BABEL_DEFAULT_LOCALE'] = 'en'
+app.config['BABEL_TRANSLATION_DIRECTORIES'] = 'translations'
+from flask import request, session
+def get_locale():
+    if request.args.get('lang'):
+        session['lang'] = request.args.get('lang')
+    return session.get('lang', 'en')
+
+babel.init_app(app, locale_selector=get_locale)
 
 # Import Blueprints
 from Apps.main import main

@@ -1,0 +1,453 @@
+# Kannada translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-12-30 13:13+0530\n"
+"PO-Revision-Date: 2025-12-30 12:53+0530\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: kn\n"
+"Language-Team: kn <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: templates/about.html:7 templates/includes/footer.html:62
+msgid "About Us"
+msgstr "ನಮ್ಮ ಬಗ್ಗೆ"
+
+#: templates/about.html:9 templates/auth/login.html:10 templates/contact.html:9
+#: templates/includes/footer.html:40 templates/services.html:9
+msgid "Home"
+msgstr "ಮನೆ"
+
+#: templates/about.html:9
+msgid ""
+"About\n"
+"                        Us"
+msgstr "ನಮ್ಮ ಬಗ್ಗೆ"
+
+#: templates/about.html:27
+msgid "About Cropify"
+msgstr "Cropify ಬಗ್ಗೆ"
+
+#: templates/about.html:28
+msgid "Abstract"
+msgstr "ಸಾರಾಂಶ"
+
+#: templates/about.html:29
+msgid ""
+"In an era where sustainable agriculture is paramount, our Cropify project"
+" stands at the\n"
+"                        forefront of innovation, offering farmers a "
+"comprehensive and user-friendly solution for\n"
+"                        efficient crop management. Leveraging cutting-"
+"edge technology and data-driven insights, our\n"
+"                        project encompasses three core functionalities to"
+" maximize agricultural productivity while\n"
+"                        minimizing environmental impact."
+msgstr ""
+
+#: templates/about.html:56
+msgid "Industry Oriented"
+msgstr "ಉದ್ಯಮ ಆಧಾರಿತ"
+
+#: templates/about.html:57
+msgid ""
+"Enabling Ecosystem for Food and Agriculture through Digital Innovation at"
+" the\n"
+"                                    World Summit."
+msgstr ""
+
+#: templates/about.html:66
+msgid "Fresh Vegetables"
+msgstr "ತಾಜಾ ತರಕಾರಿಗಳು"
+
+#: templates/about.html:67
+msgid ""
+"The mission of Cropify is to facilitate the discussion on the adoption "
+"and use\n"
+"                                    digital innovations.."
+msgstr ""
+
+#: templates/about.html:76
+msgid "We are Passionate"
+msgstr "ನಾವು ಉತ್ಸಾಹಭರಿತರಾಗಿದ್ದೇವೆ"
+
+#: templates/about.html:77
+msgid ""
+"Latest analysis by the Cadre Harmonisé indicates an increase in acute "
+"food\n"
+"                                    insecurity of more than percent.."
+msgstr ""
+
+#: templates/about.html:86
+msgid "Natural Products"
+msgstr "ನೈಸರ್ಗಿಕ ಉತ್ಪನ್ನಗಳು"
+
+#: templates/about.html:87
+msgid ""
+"The Food and Agriculture Organization’s Food Price Index averaged 94.2 "
+"points\n"
+"                                    in July, a 1.2 percent increase.."
+msgstr ""
+
+#: templates/about.html:102
+msgid "Meet"
+msgstr "ಭೇಟಿ"
+
+#: templates/about.html:102 templates/includes/footer.html:63
+msgid "Our Team"
+msgstr "ನಮ್ಮ ತಂಡ"
+
+#: templates/about.html:107
+msgid ""
+"We specialise in intelligent & effective Search and believes in the power"
+" of\n"
+"                            partnerships to grow business. We use "
+"agronomic machine learning, remote sensing."
+msgstr ""
+
+#: templates/about.html:121
+msgid "The Precision"
+msgstr "ನಿಖರತೆ"
+
+#: templates/about.html:121
+msgid "agriculture"
+msgstr "ಕೃಷಿ"
+
+#: templates/about.html:126 templates/includes/footer.html:11
+msgid "Contact Us"
+msgstr "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ"
+
+#: templates/about.html:137
+msgid "The Spirit"
+msgstr "ಚೇತನ"
+
+#: templates/about.html:137
+msgid "of Innovation"
+msgstr "ನಾವೀನ್ಯತೆಯ"
+
+#: templates/about.html:138
+msgid ""
+"If you are looking for a fun, challenging, fast-paced work environment "
+"with growth\n"
+"                        opportunities, come join our incredible."
+msgstr ""
+
+#: templates/contact.html:7 templates/contact.html:9
+#: templates/includes/footer.html:52 templates/includes/header.html:18
+msgid "Contact"
+msgstr "ಸಂಪರ್ಕಿಸಿ"
+
+#: templates/contact.html:23
+msgid "Our Office"
+msgstr "ನಮ್ಮ ಕಚೇರಿ"
+
+#: templates/contact.html:24
+msgid "Owner"
+msgstr ""
+
+#: templates/contact.html:32
+msgid "Call Us"
+msgstr "ನಮಗೆ ಕರೆ ಮಾಡಿ"
+
+#: templates/contact.html:41
+msgid "Email Address"
+msgstr "ಇಮೇಲ್ ವಿಳಾಸ"
+
+#: templates/contact.html:52
+msgid "Get"
+msgstr ""
+
+#: templates/contact.html:52
+msgid "In Touch"
+msgstr ""
+
+#: templates/contact.html:53
+msgid ""
+"We specialise in intelligent & effective Search and believes in the power"
+" of partnerships to\n"
+"                    grow business. We use agronomic machine learning, "
+"remote sensing,"
+msgstr ""
+
+#: templates/contact.html:65
+msgid "Name"
+msgstr ""
+
+#: templates/contact.html:73
+msgid "Email address"
+msgstr ""
+
+#: templates/contact.html:81
+msgid "Please enter your phone"
+msgstr ""
+
+#: templates/contact.html:88
+msgid "Your message"
+msgstr ""
+
+#: templates/contact.html:97
+msgid "Send message"
+msgstr ""
+
+#: templates/includes/footer.html:51 templates/includes/header.html:17
+#: templates/services.html:7 templates/services.html:10
+#: templates/services.html:19
+msgid "Services"
+msgstr "ಸೇವೆಗಳು"
+
+#: templates/services.html:19
+msgid "Cropify"
+msgstr ""
+
+#: templates/services.html:20
+msgid ""
+"We specialise in intelligent & effective Search and believes in the power"
+" of partnerships to grow\n"
+"                business. We use agronomic machine learning, remote "
+"sensing,"
+msgstr ""
+
+#: templates/services.html:30 templates/services.html:34
+msgid "Fertilizer"
+msgstr "ರಸಗೊಬ್ಬರ"
+
+#: templates/services.html:31
+msgid ""
+"This service will recommend you the best fertilizer that we have to use. "
+"You need give\n"
+"                            values of N, P, K, soil type, crop type, soil"
+" mostiure, temparture and humidity"
+msgstr ""
+
+#: templates/services.html:44
+msgid "Crops"
+msgstr "ಬೆಳೆಗಳು"
+
+#: templates/services.html:45
+msgid ""
+"This service will recommend the best crop to grow, based on your soil and"
+" weather\n"
+"                            conditions. which help farmers to make "
+"correct dessions"
+msgstr ""
+
+#: templates/services.html:47
+msgid "Crop"
+msgstr "ಬೆಳೆ"
+
+#: templates/services.html:57 templates/services.html:60
+msgid "Crop Disease"
+msgstr "ಬೆಳೆ ರೋಗ"
+
+#: templates/services.html:58
+msgid ""
+"This service will predict the disease of palnt/crop and suggests the "
+"solution to cure\n"
+"                            the disease. it also includes the solution "
+"from expects."
+msgstr ""
+
+#: templates/services.html:70 templates/services.html:74
+msgid "Weather"
+msgstr "ಹವಾಮಾನ"
+
+#: templates/services.html:71
+msgid ""
+"This services will provide the weather forccast for any place in the for "
+"15 day. it use\n"
+"                            VisualCrossing api to fetch the information."
+msgstr ""
+
+#: templates/services.html:84
+msgid "Queries"
+msgstr "ಪ್ರಶ್ನೆಗಳು"
+
+#: templates/services.html:85
+msgid ""
+"If farmer needs any help from experts, then they can use this services to"
+" raise the\n"
+"                            Queries and get answers"
+msgstr ""
+
+#: templates/services.html:87
+msgid "Query"
+msgstr "ಪ್ರಶ್ನೆ"
+
+#: templates/services.html:97 templates/services.html:101
+msgid "Market"
+msgstr "ಮಾರುಕಟ್ಟೆ"
+
+#: templates/services.html:98
+msgid ""
+"The former can provide his/her valuable feed back or reach us using this "
+"service. which\n"
+"                            help us to impove our productivity."
+msgstr ""
+
+#: templates/services.html:117
+msgid "PRECISION"
+msgstr "ನಿಖರ"
+
+#: templates/services.html:117
+msgid "AGRICULTURE"
+msgstr "ಕೃಷಿ"
+
+#: templates/services.html:118
+msgid ""
+"Our farm loan products allowing you even further control of your "
+"financial success. Our\n"
+"                            Business Bureau rating is a testament to how "
+"dedicated we are to our customers."
+msgstr ""
+
+#: templates/services.html:120
+msgid ""
+"It is a long established fact that a reader will be distracted by the "
+"readable\n"
+"                            content."
+msgstr ""
+
+#: templates/services.html:123
+msgid "Learn More"
+msgstr "ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ"
+
+#: templates/auth/login.html:8 templates/auth/login.html:10
+#: templates/includes/header.html:55
+msgid "Login"
+msgstr "ಲಾಗಿನ್"
+
+#: templates/auth/login.html:19
+msgid "Welcome Back"
+msgstr "ಮತ್ತೆ ಸುಸ್ವಾಗತ"
+
+#: templates/auth/login.html:34
+msgid "Forgot Password?"
+msgstr "ಪಾಸ್‌ವರ್ಡ್ ಮರೆತಿರಾ?"
+
+#: templates/auth/login.html:38
+msgid "Don't have an account."
+msgstr "ಖಾತೆ ಇಲ್ಲವೇ?"
+
+#: templates/auth/login.html:39
+msgid "register"
+msgstr "ನೋಂದಣಿ ಮಾಡಿ"
+
+#: templates/includes/footer.html:6
+msgid "bright nature"
+msgstr "ಪ್ರಕಾಶಮಾನವಾದ ಪ್ರಕೃತಿ"
+
+#: templates/includes/footer.html:6
+msgid "of decision"
+msgstr "ನಿರ್ಧಾರದ"
+
+#: templates/includes/footer.html:7
+msgid "Bringing growth, ingenuity, and experience to market."
+msgstr "ಮಾರುಕಟ್ಟೆಗೆ ಬೆಳವಣಿಗೆಯನ್ನು ತರುವುದು."
+
+#: templates/includes/footer.html:12
+msgid "About US"
+msgstr "ನಮ್ಮ ಬಗ್ಗೆ"
+
+#: templates/includes/footer.html:24
+msgid ""
+"Helping farmers to emerging markets maximize their profits. We use\n"
+"                        agronomic machine learning, remote sensing, and "
+"mobile phones to deliver financing, farm\n"
+"                        products, and customized advice to smallholder."
+msgstr ""
+
+#: templates/includes/footer.html:38
+msgid "Quick Links"
+msgstr "ತ್ವರಿತ ಲಿಂಕ್‌ಗಳು"
+
+#: templates/includes/footer.html:41
+msgid "Products"
+msgstr "ಉತ್ಪನ್ನಗಳು"
+
+#: templates/includes/footer.html:42
+msgid "Blogs"
+msgstr "ಬ್ಲಾಗ್‌ಗಳು"
+
+#: templates/includes/footer.html:43
+msgid "Gallery"
+msgstr "ಗ್ಯಾಲರಿ"
+
+#: templates/includes/footer.html:49 templates/includes/header.html:16
+msgid "About"
+msgstr "ಬಗ್ಗೆ"
+
+#: templates/includes/footer.html:53
+msgid "Careers"
+msgstr "ವೃತ್ತಿಗಳು"
+
+#: templates/includes/footer.html:54
+msgid "FAQ"
+msgstr "FAQ"
+
+#: templates/includes/footer.html:60
+msgid "Company"
+msgstr "ಕಂಪನಿ"
+
+#: templates/includes/footer.html:64
+msgid "Testimonials"
+msgstr "ಪ್ರಶಂಸಾಪತ್ರಗಳು"
+
+#: templates/includes/footer.html:65
+msgid "Pricing"
+msgstr "ಬೆಲೆ"
+
+#: templates/includes/footer.html:75
+msgid "all rights reserved"
+msgstr "ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ"
+
+#: templates/includes/footer.html:80
+msgid "Terms"
+msgstr "ನಿಯಮಗಳು"
+
+#: templates/includes/footer.html:81
+msgid "Privacy"
+msgstr "ಗೌಪ್ಯತೆ"
+
+#: templates/includes/footer.html:82
+msgid "Support"
+msgstr "ಬೆಂಬಲ"
+
+#: templates/includes/header.html:15
+msgid "HOME"
+msgstr "ಮನೆ"
+
+#: templates/includes/header.html:22
+msgid "Language"
+msgstr "ಭಾಷೆ"
+
+#: templates/includes/header.html:69
+msgid "Grown by nature"
+msgstr "ಪ್ರಕೃತಿಯಿಂದ ಬೆಳೆದಿದೆ"
+
+#: templates/includes/header.html:70
+msgid "Connecting"
+msgstr "ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ"
+
+#: templates/includes/header.html:70
+msgid ""
+"energy\n"
+"                                    markets"
+msgstr "ಶಕ್ತಿ ಮಾರುಕಟ್ಟೆಗಳು"
+
+#: templates/includes/header.html:78
+msgid "We know agriculture"
+msgstr "ನಮಗೆ ಕೃಷಿ ಗೊತ್ತು"
+
+#: templates/includes/header.html:87
+msgid "Farming Machines"
+msgstr "ಕೃಷಿ ಯಂತ್ರಗಳು"
+

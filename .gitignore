@@ -7,3 +7,19 @@ Api\__pycache__
 
 env
 .env
+.venv
+venv
+
+# Logs
+*.log
+*_log.txt
+extract_log.txt
+
+# Temp files
+curl_*.html
+curl_output.txt
+test.txt
+status.txt
+ls_output.txt
+install_log.txt
+install_safe_log.txt
