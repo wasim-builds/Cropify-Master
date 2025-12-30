@@ -69,17 +69,34 @@
 <div class="pages-hero">
     <div class="container">
         <div class="pages-title">
-            <h1>Daily Market Prices (Mandi Rates)</h1>
+            <h1>{{ labels.title }}</h1>
             <div class="page-nav">
-                <p><a href="{{ url_for('main.index') }}">Home</a> &nbsp; | &nbsp; <a href="#">Market Prices</a></p>
+                <p><a href="{{ url_for('main.index') }}">Home</a> &nbsp; | &nbsp; <a href="#">{{ labels.title }}</a></p>
             </div>
         </div>
     </div>
 </div>
 
 <div class="market-container">
-    <div class="last-updated">
-        Last Updated: {{ date }}
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <div class="last-updated">
+            Last Updated: {{ date }}
+        </div>
+
+        <!-- Language Switcher -->
+        <div class="btn-group">
+            <a href="{{ url_for('crop.market', lang='en') }}"
+                class="btn btn-sm {{ 'btn-primary' if current_lang == 'en' else 'btn-outline-primary' }}">English</a>
+            <a href="{{ url_for('crop.market', lang='hi') }}"
+                class="btn btn-sm {{ 'btn-primary' if current_lang == 'hi' else 'btn-outline-primary' }}">Hindi
+                (हिंदी)</a>
+            <a href="{{ url_for('crop.market', lang='ta') }}"
+                class="btn btn-sm {{ 'btn-primary' if current_lang == 'ta' else 'btn-outline-primary' }}">Tamil
+                (தமிழ்)</a>
+            <a href="{{ url_for('crop.market', lang='te') }}"
+                class="btn btn-sm {{ 'btn-primary' if current_lang == 'te' else 'btn-outline-primary' }}">Telugu
+                (తెలుగు)</a>
+        </div>
     </div>
 
     <div class="price-card">
@@ -87,11 +104,11 @@
             <table class="market-table">
                 <thead>
                     <tr>
-                        <th>Crop</th>
-                        <th>Variety</th>
-                        <th>Market/Mandi</th>
-                        <th>Price (₹/Quintal)</th>
-                        <th>Change</th>
+                        <th style="background-color: #2ecc71;">{{ labels.col_crop }}</th>
+                        <th style="background-color: #2ecc71;">{{ labels.col_variety }}</th>
+                        <th style="background-color: #2ecc71;">{{ labels.col_mandi }}</th>
+                        <th style="background-color: #2ecc71;">{{ labels.col_price }}</th>
+                        <th style="background-color: #2ecc71;">{{ labels.col_change }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -115,6 +132,12 @@
                 </tbody>
             </table>
         </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="{{ url_for('crop.market', lang=current_lang) }}" class="btn btn-success">
+            <i class="fas fa-sync-alt"></i> Refresh Live Rates
+        </a>
     </div>
 </div>
 {% endblock %}

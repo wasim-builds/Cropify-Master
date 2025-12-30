@@ -123,23 +123,98 @@ def schemes():
     return render_template("crop/schemes.html")
 
 @crop.route('/market')
+@crop.route('/market')
 def market():
     import datetime
+    import random
+    
+    lang = request.args.get('lang', 'en')
     today = datetime.date.today().strftime("%d %B %Y")
     
-    # Mock Data for Market Prices
-    market_data = [
-        {"crop": "Wheat", "variety": "Sharbati", "market": "Azadpur, Delhi", "price": "2,250", "change": "▲ +50", "icon": "https://img.icons8.com/color/48/wheat.png"},
-        {"crop": "Rice", "variety": "Basmati 1121", "market": "Karnal, Haryana", "price": "4,100", "change": "▼ -20", "icon": "https://img.icons8.com/color/48/rice-bowl.png"},
-        {"crop": "Maize", "variety": "Yellow Hybrid", "market": "Gulbarga, Karnataka", "price": "2,050", "change": "▲ +10", "icon": "https://img.icons8.com/color/48/corn.png"},
-        {"crop": "Cotton", "variety": "H-4", "market": "Rajkot, Gujarat", "price": "6,300", "change": "▼ -100", "icon": "https://img.icons8.com/color/48/cotton.png"},
-        {"crop": "Potato", "variety": "Jyoti", "market": "Agra, UP", "price": "850", "change": "▲ +30", "icon": "https://img.icons8.com/color/48/potato.png"},
-        {"crop": "Tomato", "variety": "Hybrid", "market": "Kolar, Karnataka", "price": "1,200", "change": "▼ -50", "icon": "https://img.icons8.com/color/48/tomato.png"},
-        {"crop": "Onion", "variety": "Red Nashik", "market": "Lasalgaon, Maharashtra", "price": "1,800", "change": "▲ +150", "icon": "https://img.icons8.com/color/48/onion.png"},
-        {"crop": "Soybean", "variety": "JS-335", "market": "Indore, MP", "price": "4,900", "change": "▲ +20", "icon": "https://img.icons8.com/color/48/soy.png"},
+    # Translation Dictionary
+    TRANSLATIONS = {
+        'hi': {
+            'Wheat': 'गेहूँ', 'Rice': 'चावल', 'Maize': 'मक्का', 'Cotton': 'कपास',
+            'Potato': 'आलू', 'Tomato': 'टमाटर', 'Onion': 'प्याज़', 'Soybean': 'सोयाबीन',
+            'Sharbati': 'शरबती', 'Basmati 1121': 'बासमती 1121', 'Yellow Hybrid': 'पीला हाइब्रिड',
+            'H-4': 'H-4', 'Jyoti': 'ज्योति', 'Hybrid': 'हाइब्रिड', 'Red Nashik': 'लाल नासिक', 'JS-335': 'JS-335',
+            'Azadpur, Delhi': 'आजादपुर, दिल्ली', 'Karnal, Haryana': 'करनाल, हरियाणा',
+            'Gulbarga, Karnataka': 'गुलबर्गा, कर्नाटक', 'Rajkot, Gujarat': 'राजकोट, गुजरात',
+            'Agra, UP': 'आगरा, यूपी', 'Kolar, Karnataka': 'कोलार, कर्नाटक',
+            'Lasalgaon, Maharashtra': 'लासलगाँव, महाराष्ट्र', 'Indore, MP': 'इंदौर, एमपी',
+            'Daily Market Prices': 'दैनिक मंडी भाव', 'Crop': 'फसल', 'Variety': 'किस्म',
+            'Market/Mandi': 'मंडी', 'Price': 'भाव (₹/ क्विंटल)', 'Change': 'बदलाव'
+        },
+        'ta': {
+            'Wheat': 'கோதுமை', 'Rice': 'அரிசி', 'Maize': 'மக்காச்சோளம்', 'Cotton': 'பருத்தி',
+            'Potato': 'உருளைக்கிழங்கு', 'Tomato': 'தக்காளி', 'Onion': 'வெங்காயம்', 'Soybean': 'சோயாபீன்',
+            'Azadpur, Delhi': 'ஆசாத்பூர், டெல்லி', 'Karnal, Haryana': 'கர்னல், ஹரியானா',
+            'Daily Market Prices': 'தினசரி சந்தை விலைகள்', 'Crop': 'பயிர்', 'Variety': 'வகை',
+            'Market/Mandi': 'சந்தை', 'Price': 'விலை (₹)', 'Change': 'மாற்றம்'
+        },
+        'te': {
+            'Wheat': 'గోధుమలు', 'Rice': 'బియ్యం', 'Maize': 'మొక్కజొన్న', 'Cotton': 'ప్రతి',
+            'Potato': 'బంగాళాదుంప', 'Tomato': 'టమాటా', 'Onion': 'ఉల్లిపాయ', 'Soybean': 'సోయాబీన్',
+            'Azadpur, Delhi': 'ఆజాద్‌పూర్, ఢిల్లీ', 'Karnal, Haryana': 'కర్నాల్, హర్యానా',
+            'Daily Market Prices': 'రోజువారీ మార్కెట్ ధరలు', 'Crop': 'పంట', 'Variety': 'రకం', 
+            'Market/Mandi': 'మార్కెట్', 'Price': 'ధర (₹)', 'Change': 'మార్పు'
+        }
+    }
+
+    # Base Data (English)
+    base_data = [
+        {"crop": "Wheat", "variety": "Sharbati", "market": "Azadpur, Delhi", "base_price": 2250, "icon": "https://img.icons8.com/color/48/wheat.png"},
+        {"crop": "Rice", "variety": "Basmati 1121", "market": "Karnal, Haryana", "base_price": 4100, "icon": "https://img.icons8.com/color/48/rice-bowl.png"},
+        {"crop": "Maize", "variety": "Yellow Hybrid", "market": "Gulbarga, Karnataka", "base_price": 2050, "icon": "https://img.icons8.com/color/48/corn.png"},
+        {"crop": "Cotton", "variety": "H-4", "market": "Rajkot, Gujarat", "base_price": 6300, "icon": "https://img.icons8.com/color/48/cotton.png"},
+        {"crop": "Potato", "variety": "Jyoti", "market": "Agra, UP", "base_price": 850, "icon": "https://img.icons8.com/color/48/potato.png"},
+        {"crop": "Tomato", "variety": "Hybrid", "market": "Kolar, Karnataka", "base_price": 1200, "icon": "https://img.icons8.com/color/48/tomato.png"},
+        {"crop": "Onion", "variety": "Red Nashik", "market": "Lasalgaon, Maharashtra", "base_price": 1800, "icon": "https://img.icons8.com/color/48/onion.png"},
+        {"crop": "Soybean", "variety": "JS-335", "market": "Indore, MP", "base_price": 4900, "icon": "https://img.icons8.com/color/48/soy.png"},
     ]
     
-    return render_template("crop/market.html", market_data=market_data, date=today)
+    market_data = []
+    
+    # Process Data: Randomize Price & Translate
+    for item in base_data:
+        # Randomize Price (+/- 5%)
+        fluctuation = random.randint(-50, 100)
+        current_price = item['base_price'] + fluctuation
+        
+        # Determine trend arrow
+        trend = "▲" if fluctuation > 0 else "▼"
+        trend_val = f"{trend} {abs(fluctuation)}"
+        
+        # Translation Lookup
+        crop_name = item['crop']
+        variety = item['variety']
+        market_name = item['market']
+        
+        if lang in TRANSLATIONS:
+            t = TRANSLATIONS[lang]
+            crop_name = t.get(crop_name, crop_name)
+            variety = t.get(variety, variety)
+            market_name = t.get(market_name, market_name)
+
+        market_data.append({
+            "crop": crop_name,
+            "variety": variety,
+            "market": market_name,
+            "price": f"{current_price:,}", # Format with commas
+            "change": trend_val,
+            "icon": item['icon']
+        })
+        
+    labels = {
+        'title': TRANSLATIONS.get(lang, {}).get('Daily Market Prices', 'Daily Market Prices'),
+        'col_crop': TRANSLATIONS.get(lang, {}).get('Crop', 'Crop'),
+        'col_variety': TRANSLATIONS.get(lang, {}).get('Variety', 'Variety'),
+        'col_mandi': TRANSLATIONS.get(lang, {}).get('Market/Mandi', 'Market/Mandi'),
+        'col_price': TRANSLATIONS.get(lang, {}).get('Price', 'Price (₹/Quintal)'),
+        'col_change': TRANSLATIONS.get(lang, {}).get('Change', 'Change')
+    }
+
+    return render_template("crop/market.html", market_data=market_data, date=today, labels=labels, current_lang=lang)
 
 @crop.route('/former-queries', methods=['GET', 'POST'])
 def former_queries():

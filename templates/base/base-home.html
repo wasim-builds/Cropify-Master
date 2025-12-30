@@ -1,52 +1,308 @@
 <!DOCTYPE html>
 <html lang="en-US" class="no-js">
-	
-    <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-            <title>Cropify </title>
-            <meta name="description" content="Modern HTML Template ideal for business like agriculture, vegetables and organic food.">
-            <meta name="keywords" content="agriculture, eco, farm, food, Fresh Fruit, fruits, healthy food, landscape, organic, organic food, products, vegetables">
-            
-            <link rel="stylesheet" href="static/fonts/css/all.min.css">  
-    
-            <link rel="shortcut icon" href="static/images/icons/favicon.png">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-            <link rel="stylesheet" href="static/css/lib/bootstrap.min.css">
-            <link rel="stylesheet" href="static/css/lib/slick.min.css"> 
-            <link rel="stylesheet" href="static/css/lib/owl.carousel.min.css">
-            <link rel='stylesheet' href="static/css/lib/flickity.min.css">
-            <link rel='stylesheet' href="static/css/lib/magnific-popup.min.css">
-            <link rel='stylesheet' href="static/css/lib/aos.min.css">
-            <link rel='stylesheet' href="static/css/lib/navbar.css">
-            <link rel="stylesheet" href="static/css/animate.min.css"/>
+    <title>Cropify </title>
+    <meta name="description"
+        content="Modern HTML Template ideal for business like agriculture, vegetables and organic food.">
+    <meta name="keywords"
+        content="agriculture, eco, farm, food, Fresh Fruit, fruits, healthy food, landscape, organic, organic food, products, vegetables">
 
-            <link rel="stylesheet" href="static/css/main.css">
-            <link rel="stylesheet" href="static/css/stylesheet.css">
-            <link rel="stylesheet" href="static/css/responsive.css">
+    <link rel="stylesheet" href="static/fonts/css/all.min.css">
 
-            <script src="static/js/modernizr-custom.js"></script>
-            {% block styles %} {% endblock styles %}
+    <link rel="shortcut icon" href="static/images/icons/favicon.png">
 
-    </head>
-    
-    <body>
+    <link rel="stylesheet" href="static/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/lib/slick.min.css">
+    <link rel="stylesheet" href="static/css/lib/owl.carousel.min.css">
+    <link rel='stylesheet' href="static/css/lib/flickity.min.css">
+    <link rel='stylesheet' href="static/css/lib/magnific-popup.min.css">
+    <link rel='stylesheet' href="static/css/lib/aos.min.css">
+    <link rel='stylesheet' href="static/css/lib/navbar.css">
+    <link rel="stylesheet" href="static/css/animate.min.css" />
 
-        <div class="google_element">
-            {% include 'includes/loader.html' %}
-            
-            {% include 'includes/header.html' %}
-            {% block main %} {% endblock main %}
-            
-            {% include 'includes/footer.html' %}
-            
-            <a href="#0" class="cd-top">Top</a>
-            {% include 'includes/scripts.html' %}
-            {% block scripts %} {% endblock scripts %}
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/stylesheet.css">
+    <link rel="stylesheet" href="static/css/responsive.css">
+
+    <script src="static/js/modernizr-custom.js"></script>
+    {% block styles %} {% endblock styles %}
+
+</head>
+
+<body>
+
+    {% include 'includes/loader.html' %}
+
+    {% include 'includes/header.html' %}
+    {% block main %} {% endblock main %}
+
+    {% include 'includes/footer.html' %}
+
+    <a href="#0" class="cd-top">Top</a>
+    {% include 'includes/scripts.html' %}
+    {% block scripts %} {% endblock scripts %}
+
+    <!-- Text-to-Speech & Speech-to-Text Chatbot Widget -->
+    <div id="agri-chat-widget">
+        <div id="chat-header" onclick="toggleChat()">
+            <span>🌱 Agri-Advisor</span>
+            <span id="toggle-icon">▲</span>
         </div>
-        
-    </body>
-    
+        <div id="chat-body" style="display: none;">
+            <div id="chat-messages">
+                <div class="msg bot-msg">Namaste! tap the mic to speak. 🎙️</div>
+            </div>
+            <div id="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Ask about crops...">
+                <button id="mic-btn" onclick="toggleVoice()"><i class="fas fa-microphone"></i></button>
+                <button id="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        #agri-chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        #chat-header {
+            background: #2ecc71;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+
+        #chat-body {
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            background: #f1f2f6;
+        }
+
+        .msg {
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            border-radius: 15px;
+            max-width: 80%;
+            font-size: 14px;
+        }
+
+        .bot-msg {
+            background: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .user-msg {
+            background: #2ecc71;
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-right-radius: 2px;
+        }
+
+        #chat-input-area {
+            display: flex;
+            padding: 10px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        #chat-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 5px;
+        }
+
+        #mic-btn,
+        #send-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #2ecc71;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        #mic-btn.listening {
+            color: red;
+            animation: pulse 1s infinite;
+        }
+    </style>
+
+    <script>
+        let isChatOpen = false;
+        // 1. Initialize Language from LocalStorage or URL
+        const urlParams = new URLSearchParams(window.location.search);
+        let savedLang = localStorage.getItem('cropify_lang') || 'en-US';
+        const urlLang = urlParams.get('lang');
+
+        // URL "short codes" mapping to full locale (for sync)
+        const langMap = {
+            'en': 'en-US', 'hi': 'hi-IN', 'ta': 'ta-IN', 'te': 'te-IN'
+        };
+        const revLangMap = {
+            'en-US': 'en', 'hi-IN': 'hi', 'ta-IN': 'ta', 'te-IN': 'te'
+        };
+
+        // If URL has lang, usage that (priority). Else use saved.
+        let currentLang = urlLang ? langMap[urlLang] || 'en-US' : savedLang;
+
+        // Save consistency
+        localStorage.setItem('cropify_lang', currentLang);
+
+        // Pre-select dropdown on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const select = document.getElementById('lang-select');
+            if (select) {
+                select.value = currentLang;
+            }
+        });
+
+        function toggleChat() {
+            const body = document.getElementById('chat-body');
+            const icon = document.getElementById('toggle-icon');
+            if (isChatOpen) {
+                body.style.display = 'none';
+                icon.innerText = '▲';
+            } else {
+                body.style.display = 'flex';
+                icon.innerText = '▼';
+            }
+            isChatOpen = !isChatOpen;
+        }
+
+        function updateLang() {
+            // User changed dropdown
+            currentLang = document.getElementById('lang-select').value;
+            localStorage.setItem('cropify_lang', currentLang);
+            console.log("Language updated to:", currentLang);
+
+            // Reload Page to apply Language Globaly (for Market Prices etc)
+            const shortCode = revLangMap[currentLang];
+            if (shortCode) {
+                const url = new URL(window.location);
+                url.searchParams.set('lang', shortCode);
+                window.location.href = url.toString();
+            }
+        }
+
+        // Voice Logic
+        function toggleVoice() {
+            if (!window.webkitSpeechRecognition) {
+                alert("Voice not supported in this browser.");
+                return;
+            }
+            const recognition = new webkitSpeechRecognition();
+            const micBtn = document.getElementById('mic-btn');
+
+            recognition.lang = currentLang;
+            recognition.start();
+            micBtn.classList.add('listening');
+
+            recognition.onresult = function (event) {
+                const text = event.results[0][0].transcript;
+                document.getElementById('chat-input').value = text;
+                sendMessage();
+            };
+
+            recognition.onend = function () {
+                micBtn.classList.remove('listening');
+            };
+        }
+
+        // Send Message & TTS
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            addMessage(text, 'user-msg');
+            input.value = '';
+
+            try {
+                const response = await fetch('/chat-api', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: text,
+                        language: currentLang
+                    })
+                });
+                const data = await response.json();
+
+                addMessage(data.reply, 'bot-msg');
+                speak(data.reply);
+
+            } catch (error) {
+                console.error("Chat Error:", error);
+                addMessage("Sorry, I am offline.", 'bot-msg');
+            }
+        }
+
+        function addMessage(text, className) {
+            const box = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            div.className = `msg ${className}`;
+            div.innerText = text;
+            box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = currentLang;
+
+            // Voice Selection Logic
+            const voices = window.speechSynthesis.getVoices();
+            let targetVoice = voices.find(v => v.lang === currentLang);
+
+            // Fallback: finding any voice starting with the language code (e.g. 'hi')
+            if (!targetVoice) {
+                const langCode = currentLang.split('-')[0];
+                targetVoice = voices.find(v => v.lang.startsWith(langCode));
+            }
+
+            if (targetVoice) {
+                utterance.voice = targetVoice;
+                console.log(`Speaking with voice: ${targetVoice.name}`);
+            } else {
+                console.log(`No specific voice found for ${currentLang}, using default.`);
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Ensure voices are loaded (Chrome quirk)
+        window.speechSynthesis.onvoiceschanged = () => {
+            window.speechSynthesis.getVoices();
+        };
+    </script>
+
+</body>
+
 </html>
